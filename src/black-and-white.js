@@ -1,23 +1,45 @@
 'use strict';
 
+(() => {
+
+Crafty.c('BackgroundLighting', {
+    init: function () {
+        this.requires('Color,2D,DOM,Motion');
+        this.attr({'vx': -50, 'vy': 0});
+
+        this.bind('Moved', function (e) {
+            if (this.x + this.w < 0) {
+                this.x = 7*Crafty.viewport.width/6;
+            }
+        });
+    }
+});
+
+})();
+
 Crafty.scene('black-and-white', function () {
     const height = Crafty.viewport.height,
           width = Crafty.viewport.width;
 
     Crafty.background('white');
-    Crafty.e('Color,2D,DOM')
+    Crafty.e('BackgroundLighting')
         .color('black')
         .attr({x: width/6, y:0, w: width/6, h: height})
     ;
 
-    Crafty.e('Color,2D,DOM')
+    Crafty.e('BackgroundLighting')
         .color('black')
         .attr({x: width/2, y:0, w: width/6, h: height})
     ;
 
-    Crafty.e('Color,2D,DOM')
+    Crafty.e('BackgroundLighting')
         .color('black')
         .attr({x: width*5/6, y:0, w: width/6, h: height})
+    ;
+
+    Crafty.e('BackgroundLighting')
+        .color('black')
+        .attr({x: 7*width/6, y:0, w: width/6, h: height})
     ;
 
     platformConstructor(width/4, height/2, width/12, 25, '#FFFFFF');
