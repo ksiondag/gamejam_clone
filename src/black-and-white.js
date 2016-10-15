@@ -4,7 +4,8 @@ Crafty.scene('black-and-white', function () {
     var height = Crafty.viewport.height,
         width = Crafty.viewport.width;
 
-    var player;
+    var blackPlayer;
+    var whitePlayer;
 
     Crafty.background('white');
     Crafty.e('Color,2D,DOM')
@@ -31,6 +32,7 @@ Crafty.scene('black-and-white', function () {
     wallConstructor(-100, 0, 100, height, '#000000');
     wallConstructor(width + 1, 0, 100, height, '#000000');
 
-    player = playerConstructor(125, height - 25, 'black');
+    blackPlayer = playerConstructor(125, height - 25, 'black');
+    whitePlayer = playerConstructor(width - 125, height - 25, 'white');
 });
 

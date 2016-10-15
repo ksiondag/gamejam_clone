@@ -59,3 +59,4 @@ Crafty.scene('menu', () => {
     start = startButton();
     playerConstructor(125, height - 25, '#FF0000', start);
 });
+
