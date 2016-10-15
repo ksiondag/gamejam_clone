@@ -1,9 +1,10 @@
 'use strict';
 
 (() => {
+
 const playerEvent = function (e) {
     if (e.button == Crafty.mouseButtons.LEFT) {
-        this.jump(e.x, e.y);
+        this.jump(e.clientX, e.clientY);
     }
     if (e.button == Crafty.mouseButtons.RIGHT) {
         console.log("SHWING");
