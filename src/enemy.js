@@ -56,11 +56,21 @@ const enemyConstructor = (x, y, color) => {
           var health = this.attr('health');
           if (health > 0) {
               // TODO(tmf): add hit animation
-              this.attr('health', --health);
+              this.trigger("TakeHit");
           }
           else {
               this.destroy();
           }
+        }
+    });
+    enemy.bind('TakeHit', function () {
+        var health = this.attr('health');
+        if (health > 0) {
+          this.attr('health', --health);
+          this.color('red');
+        }
+        else {
+          this.destroy();
         }
     });
 };
