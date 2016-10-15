@@ -1,4 +1,4 @@
 'use strict';
 
-Crafty.scene('black-and-white');
+Crafty.scene('loading');
 

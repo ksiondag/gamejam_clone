@@ -34,5 +34,7 @@ Crafty.scene('black-and-white', function () {
 
     blackPlayer = playerConstructor(125, height - 25, 'black');
     whitePlayer = playerConstructor(width - 125, height - 25, 'white');
+
+    Crafty.audio.play('melody', -1);
 });
 
