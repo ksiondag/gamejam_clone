@@ -39,6 +39,7 @@ var playerComponent = () => {
                 }
                 if (e.mouseButton == Crafty.mouseButtons.RIGHT) {
                   console.log("SHWING");
+                  Crafty.trigger("Attack");
                 }
             }
         }

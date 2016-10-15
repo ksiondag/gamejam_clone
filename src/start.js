@@ -21,7 +21,7 @@ var startButtonComponent = () => {
                     .checkHits('Player')
                     .bind('HitOn', function (hitData) {
                         console.log("TMF start object has been hit");
-                        Crafty.scene('blossom', hitData[0].obj);
+                        Crafty.scene('level', hitData[0].obj);
                     })
             );
 
