@@ -2,7 +2,6 @@
 
 var playerComponent = () => {
     var player;
-
     Crafty.c('Player', {
         init: function () {
             this.requires('DOM, Color, Gravity, Collision');
@@ -35,7 +34,12 @@ var playerComponent = () => {
         },
         click: function (e) {
             if (player) {
-                player.jump(e.realX, e.realY);
+                if (e.mouseButton == Crafty.mouseButtons.LEFT) {
+                  player.jump(e.realX, e.realY);
+                }
+                if (e.mouseButton == Crafty.mouseButtons.RIGHT) {
+                  console.log("SHWING");
+                }
             }
         }
     });

@@ -24,6 +24,7 @@ var blossomConstructor = () => {
 
 var blossomIntervalID;
 Crafty.scene('blossom', function (p) {
+    console.log("DRAMATIC FLASH!!!");
     var height = Crafty.viewport.height,
         width = Crafty.viewport.width;
 
@@ -35,7 +36,8 @@ Crafty.scene('blossom', function (p) {
     wallConstructor(width + 1, 0, 100, height, '#000000');
 
     player = playerConstructor(p.x, p.y, p.color());
-    blossomIntervalID = setInterval(blossomConstructor, 1000);
+    blossomConstructor();
+
 }, function () {
     if (blossomIntervalID) {
         clearInterval(blossomIntervalID);

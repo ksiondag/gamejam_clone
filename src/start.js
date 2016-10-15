@@ -20,6 +20,7 @@ var startButtonComponent = () => {
                     })
                     .checkHits('Player')
                     .bind('HitOn', function (hitData) {
+                        console.log("TMF start object has been hit");
                         Crafty.scene('blossom', hitData[0].obj);
                     })
             );
@@ -40,10 +41,14 @@ var startButtonComponent = () => {
     });
 };
 
+
 var startButton = () => {
-    return Crafty.e('StartButton')
-        .attr({x: 680, y: Crafty.viewport.height - Crafty.viewport.height/2 - 25})
-    ;
+    // TODO(tmf): need to use the largest of the childrenz probably -- how to find?
+    var sb = Crafty.e('StartButton'),
+        width = sb._children[0].attr('w'),
+        height = sb._children[0].attr('w');
+    sb.attr({x: Crafty.viewport.width/2 - width/2,  y: Crafty.viewport.height/2 - height/2});
+    return sb;
 };
 
 
