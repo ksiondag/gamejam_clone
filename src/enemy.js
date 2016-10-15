@@ -18,7 +18,8 @@ const enemyConstructor = (x, y, color) => {
                w: 50,
                h: 100,
                colliding: false,
-               health: 10
+               health: 10,
+               base_color: color
                })
         .color(color)
     ;
@@ -30,7 +31,14 @@ const enemyConstructor = (x, y, color) => {
     });
 
     let countdown = 5*60;
+    let healcount = 0;
+
     enemy.bind('EnterFrame', function () {
+        if (healcount > 0) {
+          if(--healcount == 0) {
+              this.color(this.attr("base_color"));
+          }
+        }
         countdown -= 1;
         if (countdown > 0) {
             return;
@@ -39,7 +47,7 @@ const enemyConstructor = (x, y, color) => {
 
         let player = Crafty('Player');
 
-        enemy.jump(
+        this.jump(
             player.x,
             player.y
         );
@@ -68,6 +76,7 @@ const enemyConstructor = (x, y, color) => {
         if (health > 0) {
           this.attr('health', --health);
           this.color('red');
+          healcount = 5;
         }
         else {
           this.destroy();
