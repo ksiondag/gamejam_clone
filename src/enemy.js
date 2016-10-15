@@ -11,9 +11,15 @@ Crafty.c('Enemy', {
 })();
 
 const enemyConstructor = (x, y, color) => {
-
+    // TODO(tmf): make health a thing we can pass on construction
     const enemy = Crafty.e('Enemy')
-        .attr({x: x, y: y, w: 50, h: 100})
+        .attr({x: x,
+               y: y,
+               w: 50,
+               h: 100,
+               colliding: false,
+               health: 10
+               })
         .color(color)
     ;
 
@@ -37,6 +43,25 @@ const enemyConstructor = (x, y, color) => {
             player.x,
             player.y
         );
+    });
+    enemy.checkHits('Player');
+    enemy.bind('HitOn', function () {
+        this.attr('colliding', true);
+    })
+    enemy.bind('HitOff', function () {
+        this.attr('colliding', false);
+    });
+    enemy.bind('Attack', function () {
+        if(this.attr('colliding')) {
+          var health = this.attr('health');
+          if (health > 0) {
+              // TODO(tmf): add hit animation
+              this.attr('health', --health);
+          }
+          else {
+              this.destroy();
+          }
+        }
     });
 };
 

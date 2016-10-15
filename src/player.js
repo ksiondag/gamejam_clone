@@ -1,38 +1,25 @@
 'use strict';
 
 (() => {
-const jumpEvent = function (e) {
-    this.jump(e.x, e.y);
+const playerEvent = function (e) {
+    if (e.button == Crafty.mouseButtons.LEFT) {
+        this.jump(e.x, e.y);
+    }
+    if (e.button == Crafty.mouseButtons.RIGHT) {
+        console.log("SHWING");
+        Crafty.trigger("Attack");
+    }
 };
 
 Crafty.c('Player', {
     init: function () {
         this.requires('Entity');
-        Crafty.addEvent(this, Crafty.stage.elem, 'mousedown', jumpEvent);
+        Crafty.addEvent(this, Crafty.stage.elem, 'mousedown', playerEvent);
     }
 });
 
 })();
 
-/*    Crafty.c('MouseTracker', {
-        setPlayer: function (p) {
-            player = p;
-            return this;
-        },
-        click: function (e) {
-            if (player) {
-                if (e.mouseButton == Crafty.mouseButtons.LEFT) {
-                  player.jump(e.realX, e.realY);
-                }
-                if (e.mouseButton == Crafty.mouseButtons.RIGHT) {
-                  console.log("SHWING");
-                  Crafty.trigger("Attack");
-                }
-            }
-        }
-    });
-};
-*/
 var playerConstructor = (x, y, color) => {
     var player;
 
