@@ -13,7 +13,7 @@ var wallConstructor = (x, y, w, h, color) => {
     var entity = Crafty.e('2D, DOM, Color, Wall, Collision')
         .attr({x: x, y: y, w: w, h: h})
         .color(color)
-        .checkHits('Player')
+        .checkHits('Entity')
         .bind('HitOn', function (hitData) {
             var hitObj = hitData[0].obj;
             hitObj.attr({vx:0});

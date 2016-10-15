@@ -1,11 +1,8 @@
 'use strict';
 
 Crafty.scene('black-and-white', function () {
-    var height = Crafty.viewport.height,
-        width = Crafty.viewport.width;
-
-    var blackPlayer;
-    var whitePlayer;
+    const height = Crafty.viewport.height,
+          width = Crafty.viewport.width;
 
     Crafty.background('white');
     Crafty.e('Color,2D,DOM')
@@ -32,8 +29,8 @@ Crafty.scene('black-and-white', function () {
     wallConstructor(-100, 0, 100, height, '#000000');
     wallConstructor(width + 1, 0, 100, height, '#000000');
 
-    blackPlayer = playerConstructor(125, height - 25, 'black');
-    whitePlayer = playerConstructor(width - 125, height - 25, 'white');
+    let blackPlayer = playerConstructor(125, height - 25, 'black');
+    let whiteEnemy = enemyConstructor(width - 125, height - 25, 'white');
 
     Crafty.audio.play('melody', -1);
 });
