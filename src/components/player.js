@@ -31,6 +31,10 @@ Crafty.c('Player', {
             this.color('red', 1);
             healcount = 5;
         });
+
+        this.bind('EndGame', function (e) {
+            this.destroy();
+        });
     }
 });
 

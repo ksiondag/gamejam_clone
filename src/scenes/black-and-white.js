@@ -55,5 +55,9 @@ Crafty.scene('black-and-white', function (position) {
     let whiteEnemy = enemyConstructor(position.white.x, position.white.y);
 
     Crafty.audio.play('melody', -1);
+
+    Crafty.bind("EndGame", function () {
+        Crafty.scene('end-game');
+    });
 });
 
