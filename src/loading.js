@@ -16,7 +16,7 @@ Crafty.scene('loading', function () {
 
     let assetsObj = {
         "audio": {
-            "melody": ["japanese_drums_with_fat_keytar.wav", "japanese_drums_with_fat_keytar.mp3"],
+            "melody": ["japanese_drums.wav"],
             "end1": ["end1.wav"],
             "end2": ["end2.wav"],
             "end3": ["end3.wav"],
