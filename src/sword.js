@@ -76,6 +76,7 @@ Crafty.c('Sword', {
         });
     },
     attack: function (clientX, clientY) {
+        Crafty.audio.play('swoosh1');
         this.trigger('Attack', {
             x: clientX,
             y: clientY
