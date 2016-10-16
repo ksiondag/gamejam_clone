@@ -57,6 +57,7 @@ Crafty.c('Entity', {
         this.attr(attr);
         return this;
     },
+    getSprite: () => null,
     attachSprite: function (name) {
 
         let render = Crafty.e(name, 'DOM', 'Color', 'SpriteAnimation');
@@ -80,12 +81,18 @@ Crafty.c('Entity', {
         render.reel('SideAttackAir', 1000, 3, 3, 3);
 
         render.reel('DownSideAttackGrounded', 1000, 0, 4, 3);
-        render.reel('DownSideAttackAir', 1000, 4, 3, 3);
+        render.reel('DownSideAttackAir', 1000, 3, 4, 3);
 
-        render.reel('DownAttackGrounded', 1000, 0, 4, 3);
-        render.reel('DownAttackAir', 1000, 4, 3, 3);
+        render.reel('DownAttackGrounded', 1000, 0, 5, 3);
+        render.reel('DownAttackAir', 1000, 3, 5, 3);
 
         render.animate('Standing', -1);
+
+        this.getSprite = function () {
+            return render;
+        }
+
+        return this;
     }
 });
 

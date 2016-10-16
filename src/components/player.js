@@ -28,7 +28,7 @@ Crafty.c('Player', {
 
         this.bind('TakeHit', function (e) {
             // TODO(tmf): add player health
-            this.color('red');
+            this.color('red', 1);
             healcount = 5;
         });
     }
@@ -44,7 +44,7 @@ const playerConstructor = (x, y, color) => {
         y: y,
         w: 50,
         h: 100,
-        base_color: color
+        base_color: color ? color: 'rgba(222, 0, 0, 0.01)'
     });
 
     if (color) {

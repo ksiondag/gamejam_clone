@@ -5,7 +5,6 @@
 Crafty.c('Enemy', {
     init: function () {
         this.requires('Entity,Kunoichi');
-        let sword = swordConstructor(this);
 
         let countdown = 5*60;
         let healcount = 0;
@@ -16,23 +15,25 @@ Crafty.c('Enemy', {
                   this.color(this.attr("base_color"));
               }
             }
+
+            let player = Crafty('Player');
+
+            if (countdown % 60 === 0) {
+                this.attack(player.x, player.y);
+            }
+
             countdown -= 1;
             if (countdown > 0) {
                 return;
             }
             countdown = 5*60;
 
-            let player = Crafty('Player');
-            this.attack(player.x, player.y);
-
-            /*          
-            this.jump(player.x, player.y);
-            */
+            this.jump((this.x + player.x)/2, Math.min(player.y + 50, this.y + 50));
         });
 
         this.bind('TakeHit', function (e) {
             // TODO(tmf): add player health
-            this.color('red');
+            this.color('red', 1);
             healcount = 5;
         });
 
@@ -61,7 +62,7 @@ const enemyConstructor = (x, y, color) => {
         w: 50,
         h: 100,
         health: 10,
-        base_color: color
+        base_color: color ? color : 'rgba(222, 0, 0, 0.01)'
     });
     
     if (color) {
@@ -75,5 +76,7 @@ const enemyConstructor = (x, y, color) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
     });
+
+    return enemy;
 };
 

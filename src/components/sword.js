@@ -9,13 +9,14 @@ Crafty.c('Sword', {
         let countdown = 0;
         let glowcount = 0;
         this.bind('EnterFrame', function () {
+            glowcount -= 1;
+            if (glowcount <= 0) {
+                this.color(this._parent.color());
+            }
+
             countdown -= 1;
             if (countdown > 0) {
                 return;
-            }
-
-            if ((glowcount > 0) && (--glowcount == 0)) {
-                //this.color(this._parent.color());
             }
 
             this.attr({
@@ -24,6 +25,8 @@ Crafty.c('Sword', {
                 w: 0,
                 h: 0
             });
+
+            this._parent.getSprite().animate('Standing', -1);
         });
 
         this.bind('Attack', function (e) {
@@ -43,19 +46,22 @@ Crafty.c('Sword', {
                 h: 60
             });
 
-            // Black magic, do not touch
+            // Black magic, needs to be fixed.... do not touch
             let dx, dy, distance;
             dx = e.x + 30 - (this._parent.x + this._parent.w/2);
             dy = e.y + 30 - (this._parent.y + this._parent.h/4);
             distance = Math.sqrt(dx*dx + dy*dy);
 
+            dx /= distance;
+            dy /= distance;
+
             let x = 0, y = 0;
             if (dx) {
-                x = this._parent.x + (this._parent.w - this.w)/2 + (dx/distance)*30;
+                x = this._parent.x + (this._parent.w - this.w)/2 + (dx)*30;
             }
 
             if (dy) {
-                y = this._parent.y + (this._parent.h/2 - this.h)/2 + (dy/distance)*30;
+                y = this._parent.y + (this._parent.h/2 - this.h)/2 + (dy)*30;
             }
 
             this.attr({
@@ -67,11 +73,32 @@ Crafty.c('Sword', {
 
             if (e.color) {
                 this.color(e.color);
+                return;
+            }
+
+            if (Math.abs(dx) > 0.95) {
+                this._parent.getSprite().animate('SideAttackGrounded', -1);
+            } else if (Math.abs(dy) > 0.95) {
+                if (dy < 0) {
+                    this._parent.getSprite().animate('UpAttackGrounded', -1);
+                } else {
+                    this._parent.getSprite().animate('DownAttackGrounded', -1);
+                }
+            } else {
+                if (dy < 0) {
+                    this._parent.getSprite().animate('UpSideAttackGrounded', -1);
+                } else {
+                    this._parent.getSprite().animate('DownSideAttackGrounded', -1);
+                }
+            }
+            this._parent.getSprite().unflip('X');
+            if (dx < 0) {
+                this._parent.getSprite().flip('X');
             }
         });
         this.bind('Glow', function () {
-            this.color('yellow');
-            glowcount = 2;
+            this.color('grey', 1);
+            glowcount = 20;
         });
         this.checkHits('Sword');
         this.bind('HitOn', function (e) {
