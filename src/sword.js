@@ -30,6 +30,8 @@ Crafty.c('Sword', {
             if (countdown > 0) {
                 return;
             }
+            let swooshAudio = 'swoosh' + (Math.floor(Math.random()*2) + 1);
+            Crafty.audio.play(swooshAudio, 1, 0.3);
             countdown = 30;
 
             // Black magic, do not touch
@@ -63,6 +65,8 @@ Crafty.c('Sword', {
         this.checkHits('Sword');
         this.bind('HitOn', function (e) {
             let swordAudio = 'sword' + (Math.floor(Math.random()*2) + 1);
+            Crafty.audio.stop('swoosh1');
+            Crafty.audio.stop('swoosh2');
             Crafty.audio.play(swordAudio, 1);
             console.log(e);
             Crafty.trigger(
@@ -76,7 +80,6 @@ Crafty.c('Sword', {
         });
     },
     attack: function (clientX, clientY) {
-        Crafty.audio.play('swoosh1');
         this.trigger('Attack', {
             x: clientX,
             y: clientY
