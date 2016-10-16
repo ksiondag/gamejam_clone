@@ -62,11 +62,17 @@ Crafty.c('Sword', {
         });
         this.checkHits('Sword');
         this.bind('HitOn', function (e) {
+            let swordAudio = 'sword' + (Math.floor(Math.random()*2) + 1);
+            Crafty.audio.play(swordAudio, 1);
             console.log(e);
-            Crafty.trigger("SwordSplosion", {
-                           sword: this,
-                           x: this.attr('x'),
-                           y: this.attr('y')});
+            Crafty.trigger(
+                "SwordSplosion",
+                {
+                   sword: this,
+                   x: this.attr('x'),
+                   y: this.attr('y')
+                }
+            );
         });
     },
     attack: function (clientX, clientY) {
