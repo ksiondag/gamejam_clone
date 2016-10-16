@@ -46,5 +46,6 @@ Crafty.scene('end-game', function () {
     Crafty.e('RestartButton')
         .attr({x: 680, y: Crafty.viewport.height - Crafty.viewport.height/2 - 25})
     ;
+    Crafty.audio.stop('melody');
     Crafty.audio.play('end1', 1);
 });
