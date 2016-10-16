@@ -1,17 +1,65 @@
 'use strict';
 
-Crafty.scene('safe-area', function () {
-    Crafty.background('grey');
+(() => {
 
-    platformConstructor(width/4, height/2, width/12, 25, 'brown');
-    platformConstructor(width/3, height/2, width/6, 25, 'brown');
-    platformConstructor(width/2, height/2, width/6, 25, 'brown');
-    platformConstructor(width*2/3, height/2, width/12, 25, 'brown');
+Crafty.c('StartButton', {
+    init: function () {
+        this.requires('2D,MouseTracker');
+
+        this.attach(
+            Crafty.e('2D,DOM,Color,Mouse,Collision')
+                .attr({x: 0, y: 0, w: 150, h: 110})
+                .color('#000000')
+                .bind('MouseOver', function () {
+                    this.color('#FFFF00');
+                })
+                .bind('MouseOut', function () {
+                    this.color('#000000');
+                })
+                .bind('MouseDown', (e) => {
+                    this.click(e);
+                })
+                .checkHits('Player')
+                .bind('HitOn', function (hitData) {
+                    Crafty.scene('clone-event', hitData[0].obj);
+                })
+        );
+
+        this.attach(
+            Crafty.e('2D,DOM,Color')
+                .attr({x: 20, y: 25, w: 110, h: 60})
+                .color('#FFFFFF')
+        );
+
+        this.attach(
+            Crafty.e('2D,DOM,Text')
+                .attr({x: 20, y: 25, w: 110, h: 60})
+                .text('Start')
+                .textFont({size: '50px'})
+        );
+    }
+});
+
+})();
+
+Crafty.scene('safe-area', function () {
+    const height = Crafty.viewport.height,
+          width = Crafty.viewport.width;
+
+    Crafty.background('white');
+
+    Crafty.e('StartButton')
+        .attr({x: 680, y: Crafty.viewport.height - Crafty.viewport.height/2 - 25})
+    ;
 
     platformConstructor(0, height, width, 25, '#000000');
     wallConstructor(-100, 0, 100, height, '#000000');
     wallConstructor(width + 1, 0, 100, height, '#000000');
 
-    let blackPlayer = playerConstructor(125, height - 25); //, 'blue');
+    let blackPlayer = playerConstructor(width/2, height - 25);
+    blackPlayer.getSprite().destroy()
+    blackPlayer.attachSprite('YingYangSprite');
+    blackPlayer.color('black');
+    blackPlayer.getSprite().color('white')
 });
 

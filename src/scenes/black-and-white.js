@@ -17,7 +17,7 @@ Crafty.c('BackgroundLighting', {
 
 })();
 
-Crafty.scene('black-and-white', function () {
+Crafty.scene('black-and-white', function (position) {
     const height = Crafty.viewport.height,
           width = Crafty.viewport.width;
 
@@ -51,8 +51,8 @@ Crafty.scene('black-and-white', function () {
     wallConstructor(-100, 0, 100, height, '#000000');
     wallConstructor(width + 1, 0, 100, height, '#000000');
 
-    let blackPlayer = playerConstructor(125, height - 25); //, 'blue');
-    let whiteEnemy = enemyConstructor(width - 125, height - 25); //, 'white');
+    let blackPlayer = playerConstructor(position.black.x, position.black.y);
+    let whiteEnemy = enemyConstructor(position.white.x, position.white.y);
 
     Crafty.audio.play('melody', -1);
 });

@@ -59,6 +59,16 @@ Crafty.scene('loading', function (data) {
                 "paddingX": 0,
                 "paddingY": 0,
                 "paddingAroundBorder": false
+            },
+            "ying-yang-sprite-sheet2.png": {
+                "tile": 120,
+                "tileh": 170,
+                "map": {
+                    "YingYangSprite": [0,0]
+                },
+                "paddingX": 0,
+                "paddingY": 0,
+                "paddingAroundBorder": false
             }
         }
     };
