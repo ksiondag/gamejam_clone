@@ -67,7 +67,7 @@ Crafty.scene('loading', function (data) {
         if (data && data.scene) {
             Crafty.scene(data.scene);
         } else {
-            Crafty.scene('black-and-white');
+            Crafty.scene('safe-area');
         }
     });
 
