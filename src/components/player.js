@@ -5,6 +5,7 @@
 Crafty.c('Player', {
     init: function () {
         this.requires('Entity,Kunoichi');
+
         Crafty.addEvent(this, Crafty.stage.elem, 'mousedown', function (e) {
             if (e.button == Crafty.mouseButtons.LEFT) {
                 this.jump(e.clientX, e.clientY);
@@ -35,17 +36,22 @@ Crafty.c('Player', {
 
 })();
 
-var playerConstructor = (x, y, color) => {
-    var player;
+const playerConstructor = (x, y, color) => {
+    const player = Crafty.e('Player');
 
-    player = Crafty.e('Player')
-        .attr({x: x,
-               y: y,
-               w: 50,
-               h: 100,
-               base_color: color})
-        .color(color)
-    ;
+    player.attr({
+        x: x,
+        y: y,
+        w: 50,
+        h: 100,
+        base_color: color
+    });
+
+    if (color) {
+        player.color(color);
+    } else {
+        player.attachSprite('BlackSprite');
+    }
 
     return player;
 };

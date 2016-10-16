@@ -15,7 +15,7 @@ Crafty.c('Sword', {
             }
 
             if ((glowcount > 0) && (--glowcount == 0)) {
-                this.color(this._parent.color());
+                //this.color(this._parent.color());
             }
 
             this.attr({
@@ -63,7 +63,7 @@ Crafty.c('Sword', {
                 y: y
             });
 
-            this.color(this._parent.color());
+            //this.color(this._parent.color());
 
             if (e.color) {
                 this.color(e.color);

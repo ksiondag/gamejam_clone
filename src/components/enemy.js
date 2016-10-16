@@ -54,16 +54,21 @@ Crafty.c('Enemy', {
 
 const enemyConstructor = (x, y, color) => {
     // TODO(tmf): make health a thing we can pass on construction
-    const enemy = Crafty.e('Enemy')
-        .attr({x: x,
-               y: y,
-               w: 50,
-               h: 100,
-               health: 10,
-               base_color: color
-               })
-        .color(color)
-    ;
+    const enemy = Crafty.e('Enemy');
+    enemy.attr({
+        x: x,
+        y: y,
+        w: 50,
+        h: 100,
+        health: 10,
+        base_color: color
+    });
+    
+    if (color) {
+        enemy.color(color);
+    } else {
+        enemy.attachSprite('WhiteSprite');
+    }
 
     let mouseX = 0, mouseY = 0;
     Crafty.addEvent(enemy, Crafty.stage.elem, 'mousemove', function (e) {

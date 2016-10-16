@@ -1,6 +1,6 @@
 'use strict';
 
-Crafty.scene('loading', function () {
+Crafty.scene('loading', function (data) {
     Crafty.e('2D,DOM,Mouse,Text')
     .attr({
         x:0,
@@ -11,7 +11,8 @@ Crafty.scene('loading', function () {
     .text("Loading");
 
     Crafty.paths({
-        "audio": "assets/audio/"
+        "audio": "assets/audio/",
+        "images": "assets/sprites/"
     });
 
     let assetsObj = {
@@ -27,11 +28,47 @@ Crafty.scene('loading', function () {
             "swoosh2": ["swoosh2.wav"],
             "sword1": ["sword1.wav"],
             "sword2": ["sword2.wav"]
+        },
+        "sprites": {
+            "sprite-sheet.png": {
+                "tile": 120,
+                "tileh": 170,
+                "map": {
+                    "DebugSprite": [0,0]
+                },
+                "paddingX": 0,
+                "paddingY": 0,
+                "paddingAroundBorder": false
+            },
+            "black-sprite-sheet.png": {
+                "tile": 120,
+                "tileh": 170,
+                "map": {
+                    "BlackSprite": [0,0]
+                },
+                "paddingX": 0,
+                "paddingY": 0,
+                "paddingAroundBorder": false
+            },
+            "white-sprite-sheet.png": {
+                "tile": 120,
+                "tileh": 170,
+                "map": {
+                    "WhiteSprite": [0,0]
+                },
+                "paddingX": 0,
+                "paddingY": 0,
+                "paddingAroundBorder": false
+            }
         }
     };
 
     Crafty.load(assetsObj, function () {
-        Crafty.scene('black-and-white');
+        if (data && data.scene) {
+            Crafty.scene(data.scene);
+        } else {
+            Crafty.scene('black-and-white');
+        }
     });
 
 });
