@@ -68,7 +68,6 @@ Crafty.c('Sword', {
             Crafty.audio.stop('swoosh1');
             Crafty.audio.stop('swoosh2');
             Crafty.audio.play(swordAudio, 1);
-            console.log(e);
             Crafty.trigger(
                 "SwordSplosion",
                 {
