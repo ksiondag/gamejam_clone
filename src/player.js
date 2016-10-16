@@ -13,7 +13,6 @@ Crafty.c('Player', {
             if (e.button == Crafty.mouseButtons.RIGHT) {
                 console.log("SHWING");
                 sword.attack(e.clientX, e.clientY);
-                // Crafty.trigger("Attack");
             }
         });
     }

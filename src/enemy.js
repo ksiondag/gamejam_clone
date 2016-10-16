@@ -5,6 +5,7 @@
 Crafty.c('Enemy', {
     init: function () {
         this.requires('Entity');
+        let sword = swordConstructor(this);
     }
 });
 
@@ -17,7 +18,6 @@ const enemyConstructor = (x, y, color) => {
                y: y,
                w: 50,
                h: 100,
-               colliding: false,
                health: 10,
                base_color: color
                })
@@ -30,6 +30,7 @@ const enemyConstructor = (x, y, color) => {
         mouseY = e.clientY;
     });
 
+    let sword = swordConstructor(enemy)
     let countdown = 5*60;
     let healcount = 0;
 
@@ -47,30 +48,18 @@ const enemyConstructor = (x, y, color) => {
 
         let player = Crafty('Player');
 
-        this.jump(
+/*        this.jump(
             player.x,
             player.y
         );
+*/
+        sword.attack(player.x, player.y)
     });
-    enemy.checkHits('Player');
-    enemy.bind('HitOn', function () {
-        this.attr('colliding', true);
+    enemy.checkHits('Sword');
+    enemy.bind('HitOn', function (e) {
+        console.log(e)
+        this.trigger('TakeHit');
     })
-    enemy.bind('HitOff', function () {
-        this.attr('colliding', false);
-    });
-    enemy.bind('Attack', function () {
-        if(this.attr('colliding')) {
-          var health = this.attr('health');
-          if (health > 0) {
-              // TODO(tmf): add hit animation
-              this.trigger("TakeHit");
-          }
-          else {
-              this.destroy();
-          }
-        }
-    });
     enemy.bind('TakeHit', function () {
         var health = this.attr('health');
         if (health > 0) {
