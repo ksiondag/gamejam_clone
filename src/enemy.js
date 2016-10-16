@@ -6,6 +6,69 @@ Crafty.c('Enemy', {
     init: function () {
         this.requires('Entity');
         let sword = swordConstructor(this);
+
+        let countdown = 5*60;
+        let healcount = 0;
+
+        this.bind('EnterFrame', function () {
+            if (healcount > 0) {
+              if(--healcount == 0) {
+                  this.color(this.attr("base_color"));
+              }
+            }
+            countdown -= 1;
+            if (countdown > 0) {
+                return;
+            }
+            countdown = 5*60;
+
+            let player = Crafty('Player');
+            this.trigger('Attack', {
+                x: player.x,
+                y: player.y});
+
+/*          this.jump(
+                player.x,
+                player.y
+            );
+*/
+        });
+
+        this.bind('Attack', function (e) {
+            sword.attack(e.x, e.y);
+        });
+        this.checkHits('Sword');
+        this.bind('HitOn', function(e) {
+            if (e[0]['obj'] !== sword) {
+                console.log("someone else cut me!");
+                this.trigger('TakeHit');
+            }
+        });
+        this.bind('TakeHit', function () {
+            var health = this.attr('health');
+            if (health > 0) {
+              this.attr('health', --health);
+              this.color('red');
+              healcount = 5;
+            }
+            else {
+              this.destroy();
+            }
+        });
+        this.bind("SwordSplosion", function (e) {
+            if(e.sword === sword) {
+                sword.glow();
+                console.log("Enemy blinded by magic!");
+                let dirx = e.x - this.attr("x");
+                if (dirx > 0) {
+                    this.jump(this.attr("x") - 50, this.attr("y") - 50);
+                }
+                else {
+                    this.jump(this.attr("x") + 50, this.attr("y") + 50);
+                }
+            }
+        });
+
     }
 });
 
@@ -28,48 +91,6 @@ const enemyConstructor = (x, y, color) => {
     Crafty.addEvent(enemy, Crafty.stage.elem, 'mousemove', function (e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
-    });
-
-    let sword = swordConstructor(enemy)
-    let countdown = 5*60;
-    let healcount = 0;
-
-    enemy.bind('EnterFrame', function () {
-        if (healcount > 0) {
-          if(--healcount == 0) {
-              this.color(this.attr("base_color"));
-          }
-        }
-        countdown -= 1;
-        if (countdown > 0) {
-            return;
-        }
-        countdown = 5*60;
-
-        let player = Crafty('Player');
-
-/*        this.jump(
-            player.x,
-            player.y
-        );
-*/
-        sword.attack(player.x, player.y)
-    });
-    enemy.checkHits('Sword');
-    enemy.bind('HitOn', function (e) {
-        console.log(e)
-        this.trigger('TakeHit');
-    })
-    enemy.bind('TakeHit', function () {
-        var health = this.attr('health');
-        if (health > 0) {
-          this.attr('health', --health);
-          this.color('red');
-          healcount = 5;
-        }
-        else {
-          this.destroy();
-        }
     });
 };
 

@@ -4,13 +4,18 @@
 
 Crafty.c('Sword', {
     init: function () {
-        this.requires('2D, Color, DOM');
+        this.requires('2D, Color, DOM, Collision');
 
         let countdown = 0;
+        let glowcount = 0;
         this.bind('EnterFrame', function () {
             countdown -= 1;
             if (countdown > 0) {
                 return;
+            }
+
+            if ((glowcount > 0) && (--glowcount == 0)) {
+                this.color(this._parent.color());
             }
 
             this.attr({
@@ -25,7 +30,6 @@ Crafty.c('Sword', {
             if (countdown > 0) {
                 return;
             }
-
             countdown = 30;
 
             // Black magic, do not touch
@@ -52,12 +56,27 @@ Crafty.c('Sword', {
 
             this.color(this._parent.color());
         });
+        this.bind('Glow', function () {
+            this.color('yellow');
+            glowcount = 2;
+        });
+        this.checkHits('Sword');
+        this.bind('HitOn', function (e) {
+            console.log(e);
+            Crafty.trigger("SwordSplosion", {
+                           sword: this,
+                           x: this.attr('x'),
+                           y: this.attr('y')});
+        });
     },
     attack: function (clientX, clientY) {
         this.trigger('Attack', {
             x: clientX,
             y: clientY
         });
+    },
+    glow: function () {
+        this.trigger('Glow');
     }
 });
 
