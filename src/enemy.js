@@ -26,8 +26,8 @@ const enemyConstructor = (x, y, color) => {
 
     let mouseX = 0, mouseY = 0;
     Crafty.addEvent(enemy, Crafty.stage.elem, 'mousemove', function (e) {
-        mouseX = e.x;
-        mouseY = e.y;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     });
 
     let countdown = 5*60;

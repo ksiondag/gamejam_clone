@@ -2,20 +2,20 @@
 
 (() => {
 
-const playerEvent = function (e) {
-    if (e.button == Crafty.mouseButtons.LEFT) {
-        this.jump(e.clientX, e.clientY);
-    }
-    if (e.button == Crafty.mouseButtons.RIGHT) {
-        console.log("SHWING");
-        Crafty.trigger("Attack");
-    }
-};
-
 Crafty.c('Player', {
     init: function () {
         this.requires('Entity');
-        Crafty.addEvent(this, Crafty.stage.elem, 'mousedown', playerEvent);
+        let sword = swordConstructor(this);
+        Crafty.addEvent(this, Crafty.stage.elem, 'mousedown', function (e) {
+            if (e.button == Crafty.mouseButtons.LEFT) {
+                this.jump(e.clientX, e.clientY);
+            }
+            if (e.button == Crafty.mouseButtons.RIGHT) {
+                console.log("SHWING");
+                sword.attack(e.clientX, e.clientY);
+                // Crafty.trigger("Attack");
+            }
+        });
     }
 });
 
