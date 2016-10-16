@@ -24,6 +24,12 @@ Crafty.c('Player', {
                 }
             }
         });
+
+        this.bind('TakeHit', function (e) {
+            // TODO(tmf): add player health
+            this.color('red');
+            healcount = 5;
+        });
     }
 });
 

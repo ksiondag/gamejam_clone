@@ -34,6 +34,15 @@ Crafty.c('Sword', {
             Crafty.audio.play(swooshAudio, 1, 0.3);
             countdown = 30;
 
+            if (e.countdown) {
+                countdown = e.countdown;
+            }
+
+            this.attr({
+                w: 60,
+                h: 60
+            });
+
             // Black magic, do not touch
             let dx, dy, distance;
             dx = e.x + 30 - (this._parent.x + this._parent.w/2);
@@ -42,21 +51,23 @@ Crafty.c('Sword', {
 
             let x = 0, y = 0;
             if (dx) {
-                x = this._parent.x + (dx/distance)*30;
+                x = this._parent.x + (this._parent.w - this.w)/2 + (dx/distance)*30;
             }
 
             if (dy) {
-                y = this._parent.y + (dy/distance)*30;
+                y = this._parent.y + (this._parent.h/2 - this.h)/2 + (dy/distance)*30;
             }
 
             this.attr({
                 x: x,
-                y: y,
-                w: 60,
-                h: 60
+                y: y
             });
 
             this.color(this._parent.color());
+
+            if (e.color) {
+                this.color(e.color);
+            }
         });
         this.bind('Glow', function () {
             this.color('yellow');
@@ -78,10 +89,14 @@ Crafty.c('Sword', {
             );
         });
     },
-    attack: function (clientX, clientY) {
+    attack: function (clientX, clientY, countdown, color) {
         this.trigger('Attack', {
             x: clientX,
-            y: clientY
+            y: clientY,
+
+            // DEBUG stuffs
+            countdown: countdown,
+            color: color
         });
     },
     glow: function () {

@@ -35,6 +35,18 @@ Crafty.c('Enemy', {
             this.color('red');
             healcount = 5;
         });
+
+        this.bind('TakeHit', function () {
+            var health = this.attr('health');
+            if (health > 0) {
+              this.attr('health', --health);
+              this.color('red');
+              healcount = 5;
+            }
+            else {
+              this.destroy();
+            }
+        });
     }
 });
 

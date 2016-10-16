@@ -1,17 +1,13 @@
 'use strict';
 
-(() => {
-})();
-
-Crafty.scene('debug-scene', function () {
+Crafty.scene('debug-sprite-sheet', function () {
     let y = 60;
     let x = 60;
 
     let construction = (x, y, attackX, attackY) => {
         playerConstructor(x, y, 'blue')
             .gravityConst(0)
-            ._children[1]
-                .attack(x + 25 + attackX, y + 25 + attackY)
+            .attack(x + 25 + attackX, y + 25 + attackY, 1000*60*60, 'red')
         ;
     };
 
@@ -71,4 +67,6 @@ Crafty.scene('debug-scene', function () {
     x += 160;
 
 });
+
+Crafty.scene('debug-sprite-sheet');
 
