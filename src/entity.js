@@ -6,6 +6,8 @@ Crafty.c('Entity', {
     init: function () {
         this.requires('DOM, Color, Gravity, Collision');
         this.bind('LandedOnGround', () => {
+            let knockAudio = 'knock' + (Math.floor(Math.random()*3) + 1);
+            Crafty.audio.play(knockAudio);
             this.attr({vx: 0});
         });
 
