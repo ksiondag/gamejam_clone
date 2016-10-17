@@ -67,7 +67,7 @@ Crafty.scene('clone-event', function (obj) {
             });
         }, 1000);
 
-        Crafty.removeEvent(Crafty('Player'), Crafty.stage.elem, 'mousedown', temporaryBothButtonsAttack);
+        Crafty.removeEvent(blackPlayer, Crafty.stage.elem, 'mousedown', temporaryBothButtonsAttack);
         Crafty.unbind('SwordSplosion', transitionBlackAndWhite);
     };
     Crafty.bind('SwordSplosion', transitionBlackAndWhite);

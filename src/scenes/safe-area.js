@@ -16,9 +16,6 @@ Crafty.c('StartButton', {
                 .bind('MouseOut', function () {
                     this.color('#000000');
                 })
-                .bind('MouseDown', (e) => {
-                    this.click(e);
-                })
                 .checkHits('Player')
                 .bind('HitOn', function (hitData) {
                     Crafty.scene('clone-event', hitData[0].obj);
