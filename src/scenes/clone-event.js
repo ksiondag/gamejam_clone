@@ -73,7 +73,8 @@ Crafty.scene('clone-event', function (obj) {
     Crafty.bind('SwordSplosion', transitionBlackAndWhite);
 
     const temporaryBothButtonsAttack = function (e) {
-        this.attack(e.clientX, e.clientY);
+        blackPlayer.attack(e.clientX, e.clientY);
+        whitePlayer.attack(e.clientX, e.clientY);
     };
     Crafty.addEvent(blackPlayer, Crafty.stage.elem, 'mousedown', temporaryBothButtonsAttack);
 
