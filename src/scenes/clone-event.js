@@ -75,7 +75,7 @@ Crafty.scene('clone-event', function (obj) {
     const temporaryBothButtonsAttack = function (e) {
         this.attack(e.clientX, e.clientY);
     };
-    Crafty.addEvent(Crafty('Player'), Crafty.stage.elem, 'mousedown', temporaryBothButtonsAttack);
+    Crafty.addEvent(blackPlayer, Crafty.stage.elem, 'mousedown', temporaryBothButtonsAttack);
 
     Crafty.audio.play('start', 1);
 });
