@@ -67,9 +67,28 @@ Crafty.scene('clone-event', function (obj) {
             });
         }, 1000);
 
+        Crafty.unbind('MouseDown', temporaryBothButtonsAttack);
         Crafty.unbind('SwordSplosion', transitionBlackAndWhite);
     };
     Crafty.bind('SwordSplosion', transitionBlackAndWhite);
+
+    const temporaryBothButtonsAttack = function () {
+        Crafty.unbind('MouseDown', temporaryBothButtonsAttack);
+
+        let swordAudio = 'sword' + (Math.floor(Math.random()*2) + 1);
+        Crafty.audio.stop('swoosh1');
+        Crafty.audio.stop('swoosh2');
+        Crafty.audio.play(swordAudio, 1);
+        Crafty.trigger(
+            "SwordSplosion",
+            {
+               sword: this,
+               x: this.attr('x'),
+               y: this.attr('y')
+            }
+        );
+    };
+    Crafty.bind('MouseDown', temporaryBothButtonsAttack);
 
     Crafty.audio.play('start', 1);
 });
