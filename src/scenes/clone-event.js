@@ -67,28 +67,15 @@ Crafty.scene('clone-event', function (obj) {
             });
         }, 1000);
 
-        Crafty.unbind('MouseDown', temporaryBothButtonsAttack);
+        Crafty.removeEvent(Crafty('Player'), Crafty.stage.elem, 'mousedown', temporaryBothButtonsAttack);
         Crafty.unbind('SwordSplosion', transitionBlackAndWhite);
     };
     Crafty.bind('SwordSplosion', transitionBlackAndWhite);
 
-    const temporaryBothButtonsAttack = function () {
-        Crafty.unbind('MouseDown', temporaryBothButtonsAttack);
-
-        let swordAudio = 'sword' + (Math.floor(Math.random()*2) + 1);
-        Crafty.audio.stop('swoosh1');
-        Crafty.audio.stop('swoosh2');
-        Crafty.audio.play(swordAudio, 1);
-        Crafty.trigger(
-            "SwordSplosion",
-            {
-               sword: this,
-               x: this.attr('x'),
-               y: this.attr('y')
-            }
-        );
+    const temporaryBothButtonsAttack = function (e) {
+        this.attack(e.clientX, e.clientY);
     };
-    Crafty.bind('MouseDown', temporaryBothButtonsAttack);
+    Crafty.addEvent(Crafty('Player'), Crafty.stage.elem, 'mousedown', temporaryBothButtonsAttack);
 
     Crafty.audio.play('start', 1);
 });
