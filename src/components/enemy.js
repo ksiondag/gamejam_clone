@@ -28,7 +28,7 @@ Crafty.c('Enemy', {
             }
             countdown = 5*60;
 
-            // this.jump((this.x + player.x)/2, Math.min(player.y + 50, this.y + 50));
+            this.jump((this.x + player.x)/2, Math.min(player.y + 50, this.y + 50));
         });
 
         this.bind('TakeHit', function (e) {
