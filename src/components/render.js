@@ -6,7 +6,7 @@ Crafty.c('AttachSprite', {
     getSprite: () => null,
     attachSprite: function (name) {
 
-        let render = Crafty.e(name, 'DOM', 'Color', 'SpriteAnimation');
+        let render = Crafty.e(name, 'Canvas', 'Color', 'SpriteAnimation');
         render.attr({
             x: this.x - 35,
             y: this.y - 43,

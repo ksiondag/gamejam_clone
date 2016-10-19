@@ -56,7 +56,5 @@ Crafty.scene('safe-area', function () {
     let blackPlayer = playerConstructor(width/2, height - 25);
     blackPlayer.getSprite().destroy()
     blackPlayer.attachSprite('YingYangSprite');
-    blackPlayer.color('black');
-    blackPlayer.getSprite().color('white')
 });
 

@@ -3,29 +3,29 @@
 Crafty.scene('render-sprite-sheet', function () {
     let rows = [
         [
-            'standing',
-            'running',
-            'jumping'
+            'Standing',
+            'Running',
+            'Jumping'
         ],
         [
-            'upAttackGrounded',
-            'upAttackAir'
+            'UpAttackGrounded',
+            'UpAttackAir'
         ],
         [
-            'upSideAttackGrounded',
-            'upSideAttackAir'
+            'UpSideAttackGrounded',
+            'UpSideAttackAir'
         ],
         [
-            'sideAttackGrounded',
-            'sideAttackAir'
+            'SideAttackGrounded',
+            'SideAttackAir'
         ],
         [
-            'downSideAttackGrounded',
-            'downSideAttackAir'
+            'DownSideAttackGrounded',
+            'DownSideAttackAir'
         ],
         [
-            'downAttackGrounded',
-            'downAttackAir'
+            'DownAttackGrounded',
+            'DownAttackAir'
         ]
     ];
 
@@ -34,35 +34,15 @@ Crafty.scene('render-sprite-sheet', function () {
 
     rows.forEach((row) => {
         row.forEach((type) => {
-            Crafty.e('2D', 'DOM', type + 1, 'Color')
+            Crafty.e('2D', 'AttachSprite', 'Color')
                 .attr({
                     x: x,
                     y: y,
                     w: 110,
                     h: 160
                 })
-                //.color('black')
-            ;
-            x += 111;
-
-            Crafty.e('2D', 'DOM', type + 2, 'Color')
-                .attr({
-                    x: x,
-                    y: y,
-                    w: 110,
-                    h: 160
-                })
-                //.color('black')
-            ;
-            x += 111;
-
-            Crafty.e('2D', 'DOM', type + 3, 'Color')
-                .attr({
-                    x: x,
-                    y: y,
-                    w: 110,
-                    h: 160
-                })
+                .attachSprite('YingYangSprite')
+                .getSprite().animate(type)
                 //.color('black')
             ;
             x += 111;
@@ -70,6 +50,21 @@ Crafty.scene('render-sprite-sheet', function () {
         x = 0;
         y += 161;
     });
+
+    let experiment = Crafty.e('2D', 'AttachSprite', 'Color')
+        .attr({
+            x: x,
+            y: y,
+            w: 110,
+            h: 160
+        })
+        .attachSprite('YingYangSprite')
+    ;
+
+    let sheet = experiment.getSprite();
+    sheet.reel('Experiment', 1000, [[0,0], [0,1], [0,2], [0,3], [0,4], [0,5]]);
+    //sheet.reel('Experiment', 1000, [[0,0], [1,0], [2,0], [3,0], [4,0], [5,0]]);
+    sheet.animate('Experiment', -1);
 });
 
 Crafty.scene('loading', {
