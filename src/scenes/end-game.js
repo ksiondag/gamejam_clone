@@ -6,7 +6,7 @@ Crafty.c('RestartButton', {
         this.requires('2D,MouseTracker');
 
         this.attach(
-            Crafty.e('2D,DOM,Color,Mouse,Collision')
+            Crafty.e('2D,Canvas,Color,Mouse,Collision')
                 .attr({x: 0, y: 0, w: 150, h: 150})
                 .color('#000000')
                 .bind('MouseOver', function () {
@@ -21,13 +21,13 @@ Crafty.c('RestartButton', {
         );
 
         this.attach(
-            Crafty.e('2D,DOM,Color')
+            Crafty.e('2D,Canvas,Color')
                 .attr({x: 20, y: 25, w: 110, h: 150})
                 .color('#FFFFFF')
         );
 
         this.attach(
-            Crafty.e('2D,DOM,Text')
+            Crafty.e('2D,Canvas,Text')
                 .attr({x: 20, y: 25, w: 110, h: 60})
                 .text('You Won!')
                 .textFont({size: '50px'})

@@ -1,7 +1,7 @@
 'use strict';
 
 var platformConstructor = (x, y, w, h, color) => {
-    var entity = Crafty.e('2D, DOM, Color, Platform')
+    var entity = Crafty.e('2D, Canvas, Color, Platform')
         .attr({x: x, y: y, w: w, h: h})
         .color(color)
     ;
@@ -10,7 +10,7 @@ var platformConstructor = (x, y, w, h, color) => {
 };
 
 var wallConstructor = (x, y, w, h, color) => {
-    var entity = Crafty.e('2D, DOM, Color, Wall, Collision')
+    var entity = Crafty.e('2D, Canvas, Color, Wall, Collision')
         .attr({x: x, y: y, w: w, h: h})
         .color(color)
         .checkHits('Entity')

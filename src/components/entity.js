@@ -31,7 +31,7 @@ const calculateVelocity = function (dx, dy) {
 
 Crafty.c('Entity', {
     init: function () {
-        this.requires('DOM, Color, Gravity, Collision, AttachSprite');
+        this.requires('Canvas, Color, Gravity, Collision, AttachSprite');
         this.bind('LandedOnGround', () => {
             let knockAudio = 'knock2';
             Crafty.audio.play(knockAudio);

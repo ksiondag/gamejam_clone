@@ -4,7 +4,7 @@
 
 Crafty.c('BackgroundLighting', {
     init: function () {
-        this.requires('Color,2D,DOM,Motion');
+        this.requires('Color,2D,Canvas,Motion');
         this.attr({'vx': -50, 'vy': 0});
 
         this.bind('Moved', function (e) {

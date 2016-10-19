@@ -5,22 +5,22 @@ Crafty.scene('clone-event', function (obj) {
           width = Crafty.viewport.width;
 
     Crafty.background('white');
-    Crafty.e('Color,2D,DOM')
+    Crafty.e('Color,2D,Canvas')
         .color('black')
         .attr({x: width/6, y:0, w: width/6, h: height})
     ;
 
-    Crafty.e('Color,2D,DOM')
+    Crafty.e('Color,2D,Canvas')
         .color('black')
         .attr({x: width/2, y:0, w: width/6, h: height})
     ;
 
-    Crafty.e('Color,2D,DOM')
+    Crafty.e('Color,2D,Canvas')
         .color('black')
         .attr({x: width*5/6, y:0, w: width/6, h: height})
     ;
 
-    Crafty.e('Color,2D,DOM')
+    Crafty.e('Color,2D,Canvas')
         .color('black')
         .attr({x: 7*width/6, y:0, w: width/6, h: height})
     ;

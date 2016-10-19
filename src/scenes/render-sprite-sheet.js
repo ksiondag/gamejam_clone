@@ -41,7 +41,7 @@ Crafty.scene('render-sprite-sheet', function () {
                     w: 110,
                     h: 160
                 })
-                .attachSprite('YingYangSprite')
+                .attachSprite('BlackSprite')
                 .getSprite().animate(type)
                 //.color('black')
             ;
@@ -58,12 +58,11 @@ Crafty.scene('render-sprite-sheet', function () {
             w: 110,
             h: 160
         })
-        .attachSprite('YingYangSprite')
+        .attachSprite('BlackSprite')
     ;
 
     let sheet = experiment.getSprite();
-    sheet.reel('Experiment', 1000, [[0,0], [0,1], [0,2], [0,3], [0,4], [0,5]]);
-    //sheet.reel('Experiment', 1000, [[0,0], [1,0], [2,0], [3,0], [4,0], [5,0]]);
+    sheet.reel('Experiment', 500, [[0,0], [0,1], [0,2], [0,3], [0,4], [0,5]]);
     sheet.animate('Experiment', -1);
 });
 

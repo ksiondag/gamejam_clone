@@ -1,7 +1,7 @@
 'use strict';
 
 Crafty.scene('loading', function (data) {
-    Crafty.e('2D,DOM,Mouse,Text')
+    Crafty.e('2D,Canvas,Mouse,Text')
     .attr({
         x:0,
         y:0,

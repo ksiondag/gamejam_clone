@@ -4,7 +4,7 @@
 
 Crafty.c('Sword', {
     init: function () {
-        this.requires('2D, Color, DOM, Collision');
+        this.requires('2D, Color, Canvas, Collision');
 
         let countdown = 0;
         let glowcount = 0;
