@@ -17,17 +17,17 @@ Crafty.scene('loading', function (data) {
 
     let assetsObj = {
         "audio": {
-            "melody": ["japanese_drums.wav", "japanese_drums.mp3", "japanese_drums.ogg"],
-            "end1": ["end1.wav", "end1.mp3", "end1.ogg"],
-            "end2": ["end2.wav", "end2.mp3", "end2.ogg"],
-            "end3": ["end3.wav", "end3.mp3", "end3.ogg"],
-            "knock1": ["knock1.wav", "knock1.mp3", "knock1.ogg"],
-            "knock2": ["knock2.wav", "knock2.mp3", "knock2.ogg"],
-            "start": ["start.wav", "start.mp3", "start.ogg"],
-            "swoosh1": ["swoosh1.wav", "swoosh1.mp3", "swoosh1.ogg"],
-            "swoosh2": ["swoosh2.wav", "swoosh2.mp3", "swoosh2.ogg"],
-            "sword1": ["sword1.wav", "sword1.mp3", "sword1.ogg"],
-            "sword2": ["sword2.wav", "sword2.mp3", "sword2.ogg"],
+            "melody": ["japanese_drums.mp3", "japanese_drums.ogg", "japanese_drums.wav"],
+            "end1": ["end1.mp3", "end1.ogg", "end1.wav"],
+            "end2": ["end2.mp3", "end2.ogg", "end2.wav"],
+            "end3": ["end3.mp3", "end3.ogg", "end3.wav"],
+            "knock1": ["knock1.mp3", "knock1.ogg", "knock1.wav"],
+            "knock2": ["knock2.mp3", "knock2.ogg", "knock2.wav"],
+            "start": ["start.mp3", "start.ogg", "start.wav"],
+            "swoosh1": ["swoosh1.mp3", "swoosh1.ogg", "swoosh1.wav"],
+            "swoosh2": ["swoosh2.mp3", "swoosh2.ogg", "swoosh2.wav"],
+            "sword1": ["sword1.mp3", "sword1.ogg", "sword1.wav"],
+            "sword2": ["sword2.mp3", "sword2.ogg", "sword2.wav"],
         },
         "sprites": {
             "sprite-sheet.png": {
